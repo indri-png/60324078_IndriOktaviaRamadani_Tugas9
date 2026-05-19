@@ -21,7 +21,7 @@ return new class extends Migration
                 'Web Design',
                 'Networking',
                 'Data Science',
-            ])
+            ]);
             $table->string('pengarang', 100);
             $table->string('penerbit', 100);
             $table->year('tahun_terbit');
