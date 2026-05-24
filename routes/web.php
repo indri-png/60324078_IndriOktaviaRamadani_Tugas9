@@ -1,6 +1,7 @@
 <?php
  
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PerpustakaanController;
 use App\Http\Controllers\KategoriController;
  
@@ -154,3 +155,15 @@ Route::get('/kategori/{id}', [KategoriController::class, 'show'])
 
 Route::get('/kategori/search/{keyword}', [KategoriController::class, 'search'])
     ->name('kategori.search');
+
+// Route test koneksi database
+Route::get('/test-db', function () {
+    try {
+        DB::connection()->getPdo();
+        $dbName = DB::connection()->getDatabaseName();
+
+        return "Koneksi database berhasil!<br>Database: <strong>{$dbName}</strong>";
+    } catch (\Exception $e) {
+        return "Koneksi database gagal!<br>Error: " . $e->getMessage();
+    }
+});
